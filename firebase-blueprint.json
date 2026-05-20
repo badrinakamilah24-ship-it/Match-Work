@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["seeker", "recruiter", "admin"] },
+        "avatar": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "bio": { "type": "string" },
+        "language": { "type": "string" },
+        "age": { "type": "number" },
+        "twoFactorEnabled": { "type": "boolean" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "fields": { "type": "array", "items": { "type": "string" } },
+        "connectedDevices": { "type": "array" }
+      },
+      "required": ["firstName", "email", "role"]
+    },
+    "Job": {
+      "title": "Job Posting",
+      "description": "Information about a job opening",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "location": { "type": "string" },
+        "salary": { "type": "string" },
+        "shift": { "type": "string" },
+        "description": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "recruiterId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "success", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "company", "recruiterId"]
+    },
+    "Application": {
+      "title": "Job Application",
+      "description": "Link between seeker and job with resume data",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string" },
+        "seekerId": { "type": "string" },
+        "recruiterId": { "type": "string" },
+        "resumeUrl": { "type": "string" },
+        "resumeText": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "reviewing", "accepted", "rejected"] },
+        "aiScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["jobId", "seekerId", "recruiterId"]
+    },
+    "Chat": {
+      "title": "Chat Message",
+      "description": "Peer-to-peer message",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "receiverId", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/jobs/{jobId}": {
+      "schema": "Job",
+      "description": "Job postings"
+    },
+    "/applications/{applicationId}": {
+      "schema": "Application",
+      "description": "Job applications"
+    },
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Messages between users"
+    }
+  }
+}

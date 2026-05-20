@@ -1,0 +1,13 @@
+{
+  "name": "Match Work",
+  "description": "AI-powered job matching platform for talent and modern recruiters. Features include smart matching, resume analysis, and real-time chat.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "AI-powered Job Matching",
+    "Smart Resume Analysis",
+    "Real-time Recruiter Chat"
+  ]
+}
